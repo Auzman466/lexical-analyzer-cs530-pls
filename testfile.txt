@@ -1,2 +1,2 @@
-int a, b=10;
+int double String a, b=10;
 a=bc*10-&(3.2+"abc";

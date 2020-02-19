@@ -34,27 +34,25 @@ public class Project1 {
                 // check if character is a digit
                 boolean checkDigit = Character.isDigit(line.charAt(i));
                 boolean checkAlpha = Character.isAlphabetic(line.charAt(i));
-                if(checkDigit){
+                if (checkDigit) {
                     // begin parsing digits in sequence
                     // add first digit of number to a string
                     analyzedToken = new StringBuilder();
-                    for (int j = i; j < line.length(); j++){
+                    for (int j = i; j < line.length(); j++) {
                         // check for decimal; if decimal present, type is double.
                         boolean checkDigit1 = Character.isDigit(line.charAt(j));
-                        if(line.charAt(j) == '.'){
+                        if (line.charAt(j) == '.') {
                             analyzedToken.append(line.charAt(j));
                             analyzedType = "double constant";
                         }
                         // decimal not present, see if constant continues
-                        else if(checkDigit1 && analyzedType.equals("double constant")){
+                        else if (checkDigit1 && analyzedType.equals("double constant")) {
                             analyzedToken.append(line.charAt(j));
-                        }
-                        else if(checkDigit1){
+                        } else if (checkDigit1) {
                             analyzedToken.append(line.charAt(j));
                             analyzedType = "int constant";
-                        }
-                        else{// constant has ended
-                            System.out.println("Line" + lineCount + ": " + i + " " + " " + analyzedType + " " + analyzedToken.toString());
+                        } else {// constant has ended
+                            System.out.println("Line" + lineCount + ": " + i + " " + " " + analyzedType + ": " + analyzedToken.toString());
                             i = j; // move index i to index j to continue parsing line without retreading ground
                             break;
                         }
@@ -62,12 +60,25 @@ public class Project1 {
 
                     }
 
-                }
-                else if (checkAlpha){
-                    
+                } else if (checkAlpha) {
+                    analyzedToken = new StringBuilder();
+                    if (i + 4 < line.length()) {
+                        if (line.substring(i, i + 4).equals("int ")) {
+                            System.out.println(line.substring(i, i + 4));
+                        }
+                    } else if (i + 7 < line.length()) {
+                        if (line.substring(i, i + 7).equals("double")) {
+                            System.out.println(line.substring(i, i + 7));
+                        }
+                        else if (line.substring(i, i + 7).equals("String")) {
+                            System.out.println(line.substring(i, i + 7));
+                        }
+                    } else {
+//                        for (int j = i; j < line.length(); j++) {
+//                        }
+                    }
                 }
             }
-
         }
     }
 }
